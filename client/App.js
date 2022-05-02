@@ -1,23 +1,35 @@
 import { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Home from "./components/Home";
+import About from "./components/About";
+import Sample from "./components/Sample";
 
 export default function App() {
   const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    fetch("http://localhost:3000/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/hello")
+  //     .then((r) => r.json())
+  //     .then((data) => setCount(data.count));
+  // }, []);
 
-  console.log(count);
+  // console.log(count);
+
+  const Stack = createNativeStackNavigator();
+  const Tab = createBottomTabNavigator();
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="About" component={About} />
+        <Stack.Screen name="Sample" component={Sample} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
