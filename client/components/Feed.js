@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Sample() {
+export default function Feed() {
   return (
     <View>
-      <Text>Sample</Text>
+      <Text>Feed</Text>
     </View>
   );
 }

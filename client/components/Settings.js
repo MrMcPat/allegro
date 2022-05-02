@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function About() {
+export default function Settings() {
   return (
     <View>
-      <Text>About</Text>
+      <Text>Settings</Text>
     </View>
   );
 }
