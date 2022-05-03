@@ -10,18 +10,15 @@ import Signup from "./components/Signup";
 import axios from "axios";
 
 export default function App() {
-  const [user, setUser] = useState(false);
-  // const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null);
 
-  // useEffect(() => {
-  //   async function handleFetch() {
-  //     const data = await axios.get("http://localhost:3000/hello");
-  //     setCount(data.data.count);
-  //   }
-  //   handleFetch();
-  // }, []);
-
-  // console.log(count);
+  useEffect(() => {
+    fetch("http://localhost:3000/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
 
   const Stack = createNativeStackNavigator();
 
@@ -31,7 +28,8 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen
             name="Home"
-            component={Home}
+            // component={Home}
+            children={() => <Home setUser={setUser} />}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
@@ -42,8 +40,14 @@ export default function App() {
             component={Landing}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Signup" component={Signup} />
+          <Stack.Screen
+            name="Login"
+            children={() => <Login setUser={setUser} />}
+          />
+          <Stack.Screen
+            name="Signup"
+            children={() => <Signup setUser={setUser} />}
+          />
         </Stack.Navigator>
       )}
     </NavigationContainer>

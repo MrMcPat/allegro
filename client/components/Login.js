@@ -9,12 +9,34 @@ import {
   Keyboard,
 } from "react-native";
 import { Formik } from "formik";
+import { useNavigation } from "@react-navigation/native";
 
-export default function Login() {
-  const [login, setLogin] = useState({});
+export default function Login({ setUser }) {
+  const [errors, setErrors] = useState([]);
+  const navigation = useNavigation();
+
   function handleLogin(values) {
-    setLogin(values);
+    fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: values.email,
+        password: values.password,
+      }),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((user) => {
+          setUser(user);
+          navigation.navigate("Home");
+        });
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
   }
+  console.log(errors);
 
   return (
     <TouchableWithoutFeedback
