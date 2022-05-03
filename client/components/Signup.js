@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Messages() {
+export default function Signup() {
   return (
     <View>
-      <Text>Messages</Text>
+      <Text>Sign up</Text>
     </View>
   );
 }

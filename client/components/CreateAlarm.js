@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Feed() {
+export default function CreateAlarm() {
   return (
     <View>
-      <Text>Feed</Text>
+      <Text>Create Alarm</Text>
     </View>
   );
 }

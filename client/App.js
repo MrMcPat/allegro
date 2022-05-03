@@ -1,26 +1,27 @@
 import { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./components/Home";
-import Profile from "./components/Profile";
-import Settings from "./components/Settings";
+import Landing from "./components/Landing";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 import axios from "axios";
 
 export default function App() {
-  const [user, setUser] = useState(true);
-  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(false);
+  // const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    async function handleFetch() {
-      const data = await axios.get("http://localhost:3000/hello");
-      setCount(data.data.count);
-    }
-    handleFetch();
-  }, []);
+  // useEffect(() => {
+  //   async function handleFetch() {
+  //     const data = await axios.get("http://localhost:3000/hello");
+  //     setCount(data.data.count);
+  //   }
+  //   handleFetch();
+  // }, []);
 
-  console.log(count);
+  // console.log(count);
 
   const Stack = createNativeStackNavigator();
 
@@ -33,11 +34,12 @@ export default function App() {
             component={Home}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator>
-          <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="Landing" component={Landing} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Signup" component={Signup} />
         </Stack.Navigator>
       )}
     </NavigationContainer>
