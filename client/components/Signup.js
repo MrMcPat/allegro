@@ -57,18 +57,21 @@ export default function Signup({ setUser }) {
       >
         {({ handleChange, handleBlur, handleSubmit, values }) => (
           <View>
+            <Text>Email</Text>
             <TextInput
               onChangeText={handleChange("email")}
               onBlur={handleBlur("email")}
               value={values.email}
               style={styles.input}
             />
+            <Text>Your Name</Text>
             <TextInput
               onChangeText={handleChange("username")}
               onBlur={handleBlur("username")}
               value={values.username}
               style={styles.input}
             />
+            <Text>Password</Text>
             <TextInput
               onChangeText={handleChange("password")}
               onBlur={handleBlur("password")}
@@ -76,6 +79,7 @@ export default function Signup({ setUser }) {
               secureTextEntry={true}
               style={styles.input}
             />
+            <Text>Confirm Password</Text>
             <TextInput
               onChangeText={handleChange("passwordConfirmation")}
               onBlur={handleBlur("passwordConfirmation")}
@@ -83,7 +87,7 @@ export default function Signup({ setUser }) {
               secureTextEntry={true}
               style={styles.input}
             />
-            <Button onPress={handleSubmit} title="Submit" />
+            <Button onPress={handleSubmit} title="Sign Up" />
           </View>
         )}
       </Formik>

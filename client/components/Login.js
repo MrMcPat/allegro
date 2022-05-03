@@ -50,12 +50,14 @@ export default function Login({ setUser }) {
       >
         {({ handleChange, handleBlur, handleSubmit, values }) => (
           <View>
+            <Text>Email</Text>
             <TextInput
               onChangeText={handleChange("email")}
               onBlur={handleBlur("email")}
               value={values.email}
               style={styles.input}
             />
+            <Text>Password</Text>
             <TextInput
               onChangeText={handleChange("password")}
               onBlur={handleBlur("password")}
@@ -63,7 +65,7 @@ export default function Login({ setUser }) {
               secureTextEntry={true}
               style={styles.input}
             />
-            <Button onPress={handleSubmit} title="Submit" />
+            <Button onPress={handleSubmit} title="Login" />
           </View>
         )}
       </Formik>
