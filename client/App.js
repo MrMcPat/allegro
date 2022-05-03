@@ -6,31 +6,40 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Settings from "./components/Settings";
+import axios from "axios";
 
 export default function App() {
-  // const [count, setCount] = useState(0);
+  const [user, setUser] = useState(true);
+  const [count, setCount] = useState(0);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/hello")
-  //     .then((r) => r.json())
-  //     .then((data) => setCount(data.count));
-  // }, []);
+  useEffect(() => {
+    async function handleFetch() {
+      const data = await axios.get("http://localhost:3000/hello");
+      setCount(data.data.count);
+    }
+    handleFetch();
+  }, []);
 
-  // console.log(count);
+  console.log(count);
 
   const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="Settings" component={Settings} />
-      </Stack.Navigator>
+      {user ? (
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="Profile" component={Profile} />
+        </Stack.Navigator>
+      ) : (
+        <Stack.Navigator>
+          <Stack.Screen name="Settings" component={Settings} />
+        </Stack.Navigator>
+      )}
     </NavigationContainer>
   );
 }
