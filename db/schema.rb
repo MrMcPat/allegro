@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_01_135812) do
+ActiveRecord::Schema.define(version: 2022_05_03_234241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 2022_05_01_135812) do
     t.string "alarm_after"
     t.integer "increment"
     t.string "alarm_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "time_changes", force: :cascade do |t|
+    t.integer "alarm_id"
+    t.string "alarm_time"
+    t.string "alarm_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
