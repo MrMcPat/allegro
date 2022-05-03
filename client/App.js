@@ -37,7 +37,11 @@ export default function App() {
         </Stack.Navigator>
       ) : (
         <Stack.Navigator>
-          <Stack.Screen name="Landing" component={Landing} />
+          <Stack.Screen
+            name="Landing"
+            component={Landing}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Signup" component={Signup} />
         </Stack.Navigator>
