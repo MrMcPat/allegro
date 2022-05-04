@@ -1,20 +1,22 @@
 import { useState, useEffect } from "react";
 import {
   StyleSheet,
-  Text,
   View,
-  TouchableHighlight,
   Button,
-  Modal,
-  Pressable,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import axios from "axios";
+import CreateAlarmName from "./CreateAlarmName";
+import CreateStartingTime from "./CreateStartingTime";
+import CreateEndTime from "./CreateEndTime";
+import CreateIncrement from "./CreateIncrement";
 
 export default function CreateAlarm() {
   const [user, setUser] = useState([]);
   const [name, setName] = useState("");
   const [startTime, setStartTime] = useState("");
-  const [desiredTime, setDesiredTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const [increment, setIncrement] = useState("");
 
   useEffect(async () => {
@@ -28,47 +30,29 @@ export default function CreateAlarm() {
   function handleStartingTime() {
     // setStartTime("8:00");
   }
-  function handleDesiredTime() {
-    // setDesiredTime("7:00");
+  function handleEndTime() {
+    // setEndTime("7:00");
   }
   function handleIncrement() {
     // setIncrement(3);
   }
   function handleAdd() {
-    console.log(name, startTime, desiredTime, increment);
+    // console.log(name, startTime, endTime, increment);
   }
 
   return (
-    <View>
-      <TouchableHighlight onPress={handleAlarmName}>
-        <View style={styles.button}>
-          <Text>Enter Alarm Name</Text>
-        </View>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={handleStartingTime}>
-        <View style={styles.button}>
-          <Text>Starting Time</Text>
-        </View>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={handleDesiredTime}>
-        <View style={styles.button}>
-          <Text>Desired Time</Text>
-        </View>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={handleIncrement}>
-        <View style={styles.button}>
-          <Text>Increment</Text>
-        </View>
-      </TouchableHighlight>
-      <Button title="Add" onPress={handleAdd} />
-    </View>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+      }}
+    >
+      <View>
+        <CreateAlarmName handleAlarmName={handleAlarmName} />
+        <CreateStartingTime handleStartingTime={handleStartingTime} />
+        <CreateEndTime handleEndTime={handleEndTime} />
+        <CreateIncrement handleIncrement={handleIncrement} />
+        <Button title="Add" onPress={handleAdd} />
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
-
-const styles = StyleSheet.create({
-  button: {
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10,
-  },
-});
