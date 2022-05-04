@@ -24,20 +24,20 @@ export default function CreateAlarm() {
     setUser(userData.data);
   }, []);
 
-  function handleAlarmName() {
-    // setName("My Alarm");
+  function handleAlarmName(name) {
+    setName(name);
   }
-  function handleStartingTime() {
-    // setStartTime("8:00");
+  function handleStartingTime(startingTime) {
+    setStartTime(startingTime);
   }
-  function handleEndTime() {
-    // setEndTime("7:00");
+  function handleEndTime(endTime) {
+    setEndTime(endTime);
   }
-  function handleIncrement() {
-    // setIncrement(3);
+  function handleIncrement(value) {
+    setIncrement(value);
   }
   function handleAdd() {
-    // console.log(name, startTime, endTime, increment);
+    console.log(user.id, name, startTime, endTime, increment);
   }
 
   return (
@@ -48,11 +48,20 @@ export default function CreateAlarm() {
     >
       <View>
         <CreateAlarmName handleAlarmName={handleAlarmName} />
-        <CreateStartingTime handleStartingTime={handleStartingTime} />
-        <CreateEndTime handleEndTime={handleEndTime} />
+        <View style={styles.timeContainer}>
+          <CreateStartingTime handleStartingTime={handleStartingTime} />
+          <CreateEndTime handleEndTime={handleEndTime} />
+        </View>
         <CreateIncrement handleIncrement={handleIncrement} />
-        <Button title="Add" onPress={handleAdd} />
+        <Button title="Add Alarm" onPress={handleAdd} />
       </View>
     </TouchableWithoutFeedback>
   );
 }
+
+const styles = StyleSheet.create({
+  timeContainer: {
+    flexDirection: "row",
+    marginHorizontal: "10%",
+  },
+});

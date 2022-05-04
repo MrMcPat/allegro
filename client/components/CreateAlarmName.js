@@ -5,7 +5,10 @@ export default function CreateAlarmName({ handleAlarmName }) {
   return (
     <View style={styles.container}>
       <Text>Enter Alarm Name</Text>
-      <TextInput style={styles.input} />
+      <TextInput
+        style={styles.input}
+        onChangeText={(value) => handleAlarmName(value)}
+      />
     </View>
   );
 }

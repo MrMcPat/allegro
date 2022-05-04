@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -36,9 +36,12 @@ export default function CreateIncrement({ handleIncrement }) {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
 
+  useEffect(() => {
+    handleIncrement(value);
+  }, [value]);
   return (
     <View>
-      <Text>Select Increment</Text>
+      <Text>Increment(minutes)</Text>
       <View style={styles.container}>
         <Dropdown
           style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
@@ -47,12 +50,10 @@ export default function CreateIncrement({ handleIncrement }) {
           inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
           data={data}
-          search
           maxHeight={300}
           labelField="label"
           valueField="value"
           placeholder={!isFocus ? "Select increment" : "..."}
-          searchPlaceholder="Search..."
           value={value}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
@@ -68,8 +69,8 @@ export default function CreateIncrement({ handleIncrement }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
     padding: 16,
+    alignItems: "center",
   },
   dropdown: {
     height: 50,
@@ -77,6 +78,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
+    width: "50%",
   },
   icon: {
     marginRight: 5,
