@@ -33,7 +33,7 @@ const data = [
 ];
 
 export default function CreateIncrement({ handleIncrement }) {
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState("1");
   const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {
