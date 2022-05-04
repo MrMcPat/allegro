@@ -6,6 +6,7 @@ class CreateAlarms < ActiveRecord::Migration[6.1]
       t.string :alarm_after
       t.integer :increment
       t.string :alarm_name
+      t.boolean :is_disabled
 
       t.timestamps
     end

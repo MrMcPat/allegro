@@ -21,14 +21,15 @@ ActiveRecord::Schema.define(version: 2022_05_03_234241) do
     t.string "alarm_after"
     t.integer "increment"
     t.string "alarm_name"
+    t.boolean "is_disabled"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "time_changes", force: :cascade do |t|
     t.integer "alarm_id"
-    t.string "alarm_time"
-    t.string "alarm_date"
+    t.text "alarm_time", default: [], array: true
+    t.text "alarm_date", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
