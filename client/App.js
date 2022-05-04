@@ -7,7 +7,6 @@ import Home from "./components/Home";
 import Landing from "./components/Landing";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import axios from "axios";
 
 export default function App() {
   const [user, setUser] = useState(null);
