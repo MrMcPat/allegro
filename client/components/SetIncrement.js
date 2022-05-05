@@ -32,7 +32,7 @@ const data = [
   { label: "20", value: "20" },
 ];
 
-export default function CreateIncrement({ handleIncrement }) {
+export default function SetIncrement({ handleIncrement }) {
   const [value, setValue] = useState("1");
   const [isFocus, setIsFocus] = useState(false);
 

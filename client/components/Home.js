@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Alarms from "./Alarms";
-import CreateAlarm from "./CreateAlarm";
+import SetAlarm from "./SetAlarm";
 import Settings from "./Settings";
 
 export default function Home({ setUser }) {
@@ -9,7 +9,7 @@ export default function Home({ setUser }) {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Alarms" component={Alarms} />
-      <Tab.Screen name="CreateAlarm" component={CreateAlarm} />
+      <Tab.Screen name="SetAlarm" component={SetAlarm} />
       <Tab.Screen
         name="Settings"
         children={() => <Settings setUser={setUser} />}

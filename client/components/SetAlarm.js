@@ -5,15 +5,17 @@ import {
   Button,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from "react-native";
 import axios from "axios";
-import CreateAlarmName from "./CreateAlarmName";
-import CreateStartingTime from "./CreateStartingTime";
-import CreateEndTime from "./CreateEndTime";
-import CreateIncrement from "./CreateIncrement";
+import SetAlarmName from "./SetAlarmName";
+import SetStartingTime from "./SetStartingTime";
+import SetEndTime from "./SetEndTime";
+import SetIncrement from "./SetIncrement";
 
-export default function CreateAlarm() {
+export default function SetAlarm() {
   const [user, setUser] = useState([]);
+  const [alarm, setAlarm] = useState([])
   const [name, setName] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -22,6 +24,8 @@ export default function CreateAlarm() {
   useEffect(async () => {
     const userData = await axios.get("http://localhost:3000/me");
     setUser(userData.data);
+    const alarmData = await axios.get("http://localhost:3000/alarms")
+    setAlarm(alarmData.data.find(alarm => alarm.user_id === userData.data.id))
   }, []);
 
   const handleAlarmName = (name) => setName(name);
@@ -36,15 +40,8 @@ export default function CreateAlarm() {
         parseInt(endTime.substring(0, 2)) &&
         parseInt(startTime.substring(3, 5)) < parseInt(endTime.substring(3, 5)))
     ) {
-      alert("Start time must be greater than end time.");
+      Alert.alert("Start time must be greater than end time.");
     } else {
-      let postAlarm = {
-        user_id: user.id,
-        alarm_name: name,
-        alarm_before: startTime,
-        alarm_after: endTime,
-        increment: increment,
-      };
       let hourDiff =
         startTime.substring(3, 5) === endTime.substring(3, 5)
           ? parseInt(startTime.substring(0, 2)) -
@@ -115,7 +112,7 @@ export default function CreateAlarm() {
           minute = parseInt(startTime.substring(3, 5)) - increment * i;
           for (
             let j = 0;
-            j <
+            j <=
             parseInt(startTime.substring(0, 2)) -
               parseInt(endTime.substring(0, 2));
             j++
@@ -132,8 +129,27 @@ export default function CreateAlarm() {
           );
         }
       }
-      console.log(dayArray);
-      console.log(timeArray);
+      console.log(JSON.stringify(dayArray));
+      console.log(JSON.stringify(timeArray));
+      if (!alarm) {
+        axios.post("http://localhost:3000/alarms", {
+          user_id: user.id,
+          alarm_name: name,
+          alarm_before: startTime,
+          alarm_after: endTime,
+          alarm_increment: increment,
+          is_disabled: false,
+        })
+      } else {
+        axios.patch(`http://localhost:3000/alarms/${alarm.id}`, {
+          alarm_name: name,
+          alarm_before: startTime,
+          alarm_after: endTime,
+          alarm_increment: increment,
+          is_disabled: false,
+        })
+      }
+
     }
   }
 
@@ -144,13 +160,13 @@ export default function CreateAlarm() {
       }}
     >
       <View>
-        <CreateAlarmName handleAlarmName={handleAlarmName} />
+        <SetAlarmName handleAlarmName={handleAlarmName} />
         <View style={styles.timeContainer}>
-          <CreateStartingTime handleStartingTime={handleStartingTime} />
-          <CreateEndTime handleEndTime={handleEndTime} />
+          <SetStartingTime handleStartingTime={handleStartingTime} />
+          <SetEndTime handleEndTime={handleEndTime} />
         </View>
-        <CreateIncrement handleIncrement={handleIncrement} />
-        <Button title="Add Alarm" onPress={handleAdd} />
+        <SetIncrement handleIncrement={handleIncrement} />
+        <Button title="Set Alarm" onPress={handleAdd} />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -159,6 +175,6 @@ export default function CreateAlarm() {
 const styles = StyleSheet.create({
   timeContainer: {
     flexDirection: "row",
-    marginHorizontal: "10%",
+    justifyContent: "center",
   },
 });

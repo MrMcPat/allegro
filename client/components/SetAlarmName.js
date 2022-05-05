@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
 
-export default function CreateAlarmName({ handleAlarmName }) {
+export default function SetAlarmName({ handleAlarmName }) {
   return (
     <View style={styles.container}>
       <Text>Enter Alarm Name</Text>

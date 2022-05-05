@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Picker } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { Picker } from "@react-native-picker/picker";
+
 import hours from "../timeSelection/hours";
 import minutes from "../timeSelection/minutes";
 
-export default function CreateStartingTime({ handleStartingTime }) {
+export default function SetEndTime({ handleEndTime }) {
   const [selectedHour, setSelectedHour] = useState("00");
   const [selectedMinute, setSelectedMinute] = useState("00");
 
   useEffect(() => {
-    handleStartingTime(`${selectedHour}:${selectedMinute}`);
+    handleEndTime(`${selectedHour}:${selectedMinute}`);
   }, [selectedHour, selectedMinute]);
 
   return (
     <View>
-      <Text>Starting Time</Text>
+      <Text>End Time</Text>
       <View style={styles.container}>
         <Picker
           style={styles.picker}
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   picker: {
-    width: "30%",
+    width: 90,
     // height: 200,
   },
 });

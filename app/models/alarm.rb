@@ -3,5 +3,5 @@ class Alarm < ApplicationRecord
     has_many :time_changes
 
     validates :user_id, uniqueness: {scope: [:alarm_name, :alarm_before]}
-    validates :increment, numericality: {less_than_or_equal_to: 20, greater_than: 0}
+    validates :alarm_increment, numericality: {less_than_or_equal_to: 20, greater_than: 0}
 end
