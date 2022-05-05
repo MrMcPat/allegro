@@ -24,18 +24,11 @@ export default function CreateAlarm() {
     setUser(userData.data);
   }, []);
 
-  function handleAlarmName(name) {
-    setName(name);
-  }
-  function handleStartingTime(startingTime) {
-    setStartTime(startingTime);
-  }
-  function handleEndTime(endTime) {
-    setEndTime(endTime);
-  }
-  function handleIncrement(value) {
-    setIncrement(value);
-  }
+  const handleAlarmName = (name) => setName(name);
+  const handleStartingTime = (startingTime) => setStartTime(startingTime);
+  const handleEndTime = (endTime) => setEndTime(endTime);
+  const handleIncrement = (value) => setIncrement(value);
+
   function handleAdd() {
     if (
       parseInt(startTime.substring(0, 2)) < parseInt(endTime.substring(0, 2)) ||
