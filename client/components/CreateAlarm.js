@@ -87,15 +87,60 @@ export default function CreateAlarm() {
       }
       let totalTime = hourDiff * 60 + minuteDiff;
       let totalDays = Math.floor(totalTime / increment) + 1;
-      console.log(totalDays);
-      let dayArray = [];
-      let timeArray = [];
-      for (let i = 1; i <= totalDays; i++) {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + i);
-        dayArray.push(JSON.stringify(tomorrow).substring(1, 11));
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      let dayArray = [JSON.stringify(tomorrow).substring(1, 11)];
+      let timeArray = [startTime];
+      for (let i = 2; i <= totalDays; i++) {
+        const nextDay = new Date();
+        nextDay.setDate(nextDay.getDate() + i);
+        dayArray.push(JSON.stringify(nextDay).substring(1, 11));
+        let hour;
+        let minute;
+        if (parseInt(startTime.substring(3, 5)) === 0) {
+          hour = parseInt(startTime.substring(0, 2)) - 1;
+          minute = 60 - increment * (i - 1);
+          for (
+            let j = 1;
+            j <
+            parseInt(startTime.substring(0, 2)) -
+              parseInt(endTime.substring(0, 2));
+            j++
+          ) {
+            if (minute < 0) {
+              hour--;
+              minute = 60 + minute;
+            }
+          }
+          timeArray.push(
+            `${hour.toString().padStart(2, 0)}:${minute
+              .toString()
+              .padStart(2, 0)}`
+          );
+        } else {
+          hour = parseInt(startTime.substring(0, 2));
+          minute = parseInt(startTime.substring(3, 5)) - increment * i;
+          for (
+            let j = 0;
+            j <
+            parseInt(startTime.substring(0, 2)) -
+              parseInt(endTime.substring(0, 2));
+            j++
+          ) {
+            if (minute < 0) {
+              hour--;
+              minute = 60 + minute;
+            }
+          }
+          timeArray.push(
+            `${hour.toString().padStart(2, 0)}:${minute
+              .toString()
+              .padStart(2, 0)}`
+          );
+        }
       }
       console.log(dayArray);
+      console.log(timeArray);
     }
   }
 
