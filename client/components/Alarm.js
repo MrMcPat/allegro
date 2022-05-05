@@ -2,18 +2,20 @@ import { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import axios from "axios";
 
-export default function Alarm() {
+export default function Alarm({ toggle }) {
   const [user, setUser] = useState([]);
   const [alarm, setAlarm] = useState([]);
   const [alarmDateTime, setAlarmDateTime] = useState([]);
-  // const currentDate =
-  //   String(new Date().getFullYear()).padStart(2, "0") +
-  //   "-" +
-  //   String(new Date().getMonth() + 1).padStart(2, "0") +
-  //   "-" +
-  //   String(new Date().getDate()).padStart(2, "0");
-  // console.log(currentDate);
+  const [alarmTomorrow, setAlarmTomorrow] = useState([]);
+
   useEffect(async () => {
+    const currentDate =
+      String(new Date().getFullYear()).padStart(2, "0") +
+      "-" +
+      String(new Date().getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(new Date().getDate()).padStart(2, "0");
+
     const userData = await axios.get("http://localhost:3000/me");
     setUser(userData.data);
     const alarmData = await axios.get("http://localhost:3000/alarms");
@@ -121,15 +123,44 @@ export default function Alarm() {
           });
         }
       }
+      // console.log(currentDate);
       setAlarmDateTime(alarmArray);
+      setAlarmTomorrow(
+        alarmArray.find((date) => new Date(currentDate) < new Date(date.day))
+      );
     }
-  }, []);
-  console.log(alarm);
-  console.log(alarmDateTime);
+  }, [toggle]);
+  // console.log(alarm);
+  console.log(alarmDateTime.length - alarmDateTime.indexOf(alarmTomorrow));
+  // console.log(alarmDateTime.indexOf(alarmTomorrow));
 
   return (
     <View>
-      <Text>Alarm</Text>
+      {alarm ? (
+        <>
+          <Text>{alarm.alarm_name}</Text>
+          <Text>{alarm.alarm_before}</Text>
+          <Text>{alarm.alarm_after}</Text>
+          <Text>{alarm.alarm_increment}</Text>
+          <Text>
+            Tomorrow's alarm:{" "}
+            {alarmTomorrow.day ? alarmTomorrow.day : "Everyday"} at{" "}
+            {alarmTomorrow.time ? alarmTomorrow.time : alarm.alarm_after}
+          </Text>
+          {alarmTomorrow ? (
+            <Text>
+              {alarmDateTime.length - alarmDateTime.indexOf(alarmTomorrow)}{" "}
+              day(s) left before your desired wake up goal!
+            </Text>
+          ) : (
+            <Text>You have reached your goal!</Text>
+          )}
+        </>
+      ) : (
+        <>
+          <Text>Please set your alarm.</Text>
+        </>
+      )}
     </View>
   );
 }

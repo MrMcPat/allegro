@@ -13,7 +13,7 @@ import SetStartingTime from "./SetStartingTime";
 import SetEndTime from "./SetEndTime";
 import SetIncrement from "./SetIncrement";
 
-export default function SetAlarm() {
+export default function SetAlarm({ toggle, setToggle }) {
   const [user, setUser] = useState([]);
   const [alarm, setAlarm] = useState([]);
   const [name, setName] = useState("");
@@ -62,6 +62,7 @@ export default function SetAlarm() {
           is_disabled: false,
         });
       }
+      setToggle((toggle) => !toggle);
     }
   }
 
