@@ -4,9 +4,7 @@ import Alarm from "./Alarm";
 import SetAlarm from "./SetAlarm";
 import Settings from "./Settings";
 import axios from "axios";
-// import { createAlarm } from "react-native-simple-alarm";
-// import { getAlarms } from "react-native-simple-alarm";
-// import moment from "moment";
+// import { AsyncStorage } from "@react-native-community/async-storage";
 
 export default function Home({ setUser }) {
   const [toggle, setToggle] = useState(false);
@@ -137,23 +135,6 @@ export default function Home({ setUser }) {
         alarmArray.find((date) => new Date(currentDate) < new Date(date.day))
       );
     }
-
-    // createAlarm = async () => {
-    //   try {
-    //     await createAlarm({
-    //       active: false,
-    //       date: new Date().toISOString(),
-    //       message: "message",
-    //       snooze: 1,
-    //     });
-    //   } catch (e) {}
-    // };
-    // getAlarms = async () => {
-    //   try {
-    //     const alarms = await getAlarms();
-    //     console.log(alarms);
-    //   } catch (e) {}
-    // };
   }, [toggle]);
 
   // console.log(alarmDateTime.length - alarmDateTime.indexOf(alarmTomorrow));
