@@ -58,6 +58,7 @@ export default function App() {
       if (user && alarmTrigger) {
         if (time === alarmTrigger.time) {
           scheduleNotificationHandler();
+          alert("WAKE UP");
         }
       }
     }, 60000);
