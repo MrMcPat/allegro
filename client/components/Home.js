@@ -4,13 +4,8 @@ import Alarm from "./Alarm";
 import SetAlarm from "./SetAlarm";
 import Settings from "./Settings";
 import axios from "axios";
-// import { AsyncStorage } from "@react-native-community/async-storage";
 
-export default function Home({
-  setUser,
-  scheduleNotificationHandler,
-  setAlarmTrigger,
-}) {
+export default function Home({ setUser, setAlarmTrigger }) {
   const [toggle, setToggle] = useState(false);
   const Tab = createBottomTabNavigator();
   const [currentUser, setCurrentUser] = useState([]);
@@ -27,9 +22,13 @@ export default function Home({
       "-" +
       String(new Date().getDate()).padStart(2, "0");
 
-    const userData = await axios.get("http://localhost:3000/me");
+    const userData = await axios.get(
+      "https://allegro-project.herokuapp.com/me"
+    );
     setCurrentUser(userData.data);
-    const alarmData = await axios.get("http://localhost:3000/alarms");
+    const alarmData = await axios.get(
+      "https://allegro-project.herokuapp.com/alarms"
+    );
     const userAlarm = alarmData.data.find(
       (alarm) => alarm.user_id === userData.data.id
     );

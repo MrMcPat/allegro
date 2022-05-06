@@ -22,9 +22,13 @@ export default function SetAlarm({ toggle, setToggle }) {
   const [increment, setIncrement] = useState("");
 
   useEffect(async () => {
-    const userData = await axios.get("http://localhost:3000/me");
+    const userData = await axios.get(
+      "https://allegro-project.herokuapp.com/me"
+    );
     setUser(userData.data);
-    const alarmData = await axios.get("http://localhost:3000/alarms");
+    const alarmData = await axios.get(
+      "https://allegro-project.herokuapp.com/alarms"
+    );
     setAlarm(
       alarmData.data.find((alarm) => alarm.user_id === userData.data.id)
     );
@@ -45,7 +49,7 @@ export default function SetAlarm({ toggle, setToggle }) {
       Alert.alert("Start time must be greater than end time.");
     } else {
       if (!alarm) {
-        axios.post("http://localhost:3000/alarms", {
+        axios.post("https://allegro-project.herokuapp.com/alarms", {
           user_id: user.id,
           alarm_name: name,
           alarm_before: startTime,
@@ -54,13 +58,16 @@ export default function SetAlarm({ toggle, setToggle }) {
           is_disabled: false,
         });
       } else {
-        axios.patch(`http://localhost:3000/alarms/${alarm.id}`, {
-          alarm_name: name,
-          alarm_before: startTime,
-          alarm_after: endTime,
-          alarm_increment: increment,
-          is_disabled: false,
-        });
+        axios.patch(
+          `https://allegro-project.herokuapp.com/alarms/${alarm.id}`,
+          {
+            alarm_name: name,
+            alarm_before: startTime,
+            alarm_after: endTime,
+            alarm_increment: increment,
+            is_disabled: false,
+          }
+        );
       }
       setToggle((toggle) => !toggle);
     }

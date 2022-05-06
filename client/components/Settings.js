@@ -5,7 +5,9 @@ export default function Settings({ setUser }) {
   const navigation = useNavigation();
 
   function handleLogout() {
-    fetch("http://localhost:3000/logout", { method: "DELETE" }).then((r) => {
+    fetch("https://allegro-project.herokuapp.com/logout", {
+      method: "DELETE",
+    }).then((r) => {
       if (r.ok) {
         setUser(null);
         navigation.navigate("Landing");

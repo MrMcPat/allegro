@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function Alarm({ alarm, alarmDateTime, alarmTomorrow }) {
   return (
@@ -16,10 +16,16 @@ export default function Alarm({ alarm, alarmDateTime, alarmTomorrow }) {
             {alarmTomorrow.time ? alarmTomorrow.time : alarm.alarm_after}
           </Text>
           {alarmTomorrow ? (
-            <Text>
-              {alarmDateTime.length - alarmDateTime.indexOf(alarmTomorrow)}{" "}
-              day(s) left before your desired wake up goal!
-            </Text>
+            <>
+              <Text>
+                This is day {alarmDateTime.indexOf(alarmTomorrow)} of your
+                progress.
+              </Text>
+              <Text>
+                {alarmDateTime.length - alarmDateTime.indexOf(alarmTomorrow)}{" "}
+                day(s) left before your desired wake up goal!
+              </Text>
+            </>
           ) : (
             <Text>You have reached your goal!</Text>
           )}

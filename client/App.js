@@ -40,7 +40,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    fetch("http://localhost:3000/me").then((r) => {
+    fetch("https://allegro-project.herokuapp.com/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }

@@ -16,7 +16,7 @@ export default function Signup({ setUser }) {
   const navigation = useNavigation();
 
   function handleSignup(values) {
-    fetch("http://localhost:3000/signup", {
+    fetch("https://allegro-project.herokuapp.com/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
