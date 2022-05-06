@@ -6,12 +6,17 @@ import Settings from "./Settings";
 import axios from "axios";
 // import { AsyncStorage } from "@react-native-community/async-storage";
 
-export default function Home({ setUser }) {
+export default function Home({
+  setUser,
+  scheduleNotificationHandler,
+  setAlarmTrigger,
+}) {
   const [toggle, setToggle] = useState(false);
   const Tab = createBottomTabNavigator();
   const [currentUser, setCurrentUser] = useState([]);
   const [alarm, setAlarm] = useState([]);
   const [alarmDateTime, setAlarmDateTime] = useState([]);
+  const [alarmToday, setAlarmToday] = useState([]);
   const [alarmTomorrow, setAlarmTomorrow] = useState([]);
 
   useEffect(async () => {
@@ -129,16 +134,28 @@ export default function Home({ setUser }) {
           });
         }
       }
-      // console.log(currentDate);
+      const alarmToday = alarmArray.find(
+        (date) => new Date(currentDate) === new Date(date.day)
+      );
+      if (alarmToday) {
+        setAlarmTrigger(alarmToday);
+      } else if (
+        !alarmToday &&
+        alarmArray.find((date) => new Date(currentDate) > new Date(date.day))
+      ) {
+        setAlarmTrigger({
+          day: new Date(),
+          time: alarm.alarm_after,
+        });
+      } else {
+        setAlarmTrigger(null);
+      }
       setAlarmDateTime(alarmArray);
       setAlarmTomorrow(
         alarmArray.find((date) => new Date(currentDate) < new Date(date.day))
       );
     }
   }, [toggle]);
-
-  // console.log(alarmDateTime.length - alarmDateTime.indexOf(alarmTomorrow));
-  // console.log(alarmDateTime.indexOf(alarmTomorrow));
 
   return (
     <Tab.Navigator>
@@ -149,6 +166,7 @@ export default function Home({ setUser }) {
             alarm={alarm}
             alarmDateTime={alarmDateTime}
             alarmTomorrow={alarmTomorrow}
+            scheduleNotificationHandler={scheduleNotificationHandler}
           />
         )}
       />

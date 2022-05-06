@@ -11,8 +11,6 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.12.1",
-    "@react-native-community/push-notification-ios": "^1.10.1",
     "@react-native-picker/picker": "^2.4.1",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.10",
@@ -26,11 +24,9 @@
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
     "react-native-element-dropdown": "^1.8.10",
-    "react-native-push-notification": "^8.1.1",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1",
-    "expo-device": "~4.1.0",
     "expo-notifications": "~0.14.0"
   },
   "devDependencies": {

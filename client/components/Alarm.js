@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 
-export default function Alarm({ alarm, alarmDateTime, alarmTomorrow }) {
+export default function Alarm({
+  alarm,
+  alarmDateTime,
+  alarmTomorrow,
+  scheduleNotificationHandler,
+}) {
   return (
     <View>
+      <Button title="Notif" onPress={scheduleNotificationHandler} />
       {alarm ? (
         <>
           <Text>{alarm.alarm_name}</Text>
