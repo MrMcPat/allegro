@@ -166,7 +166,6 @@ export default function Home({
             alarm={alarm}
             alarmDateTime={alarmDateTime}
             alarmTomorrow={alarmTomorrow}
-            scheduleNotificationHandler={scheduleNotificationHandler}
           />
         )}
       />

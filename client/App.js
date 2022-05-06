@@ -55,8 +55,10 @@ export default function App() {
           .toString()
           .padStart(2, 0)}`
       );
-      if (time === alarmTrigger.time) {
-        scheduleNotificationHandler();
+      if (user && alarmTrigger) {
+        if (time === alarmTrigger.time) {
+          scheduleNotificationHandler();
+        }
       }
     }, 60000);
   }, [time]);
@@ -70,11 +72,7 @@ export default function App() {
           <Stack.Screen
             name="Home"
             children={() => (
-              <Home
-                setUser={setUser}
-                scheduleNotificationHandler={scheduleNotificationHandler}
-                setAlarmTrigger={setAlarmTrigger}
-              />
+              <Home setUser={setUser} setAlarmTrigger={setAlarmTrigger} />
             )}
             options={{ headerShown: false }}
           />
