@@ -46,44 +46,71 @@ export default function Settings({ toggle, setToggle, setUser }) {
   }
 
   function handleChangeUsername(values) {
-    axios
-      .patch(`https://allegro-project.herokuapp.com/users/${currentUser.id}`, {
-        username: values.username,
-      })
-      .catch((error) => {
-        if (error.response) {
-          Alert.alert("Username successfully changed.");
-        }
-      });
-    setToggle((toggle) => !toggle);
+    if (values.username.length === 0) {
+      Alert.alert("Username cannot be blank.");
+    } else {
+      axios
+        .patch(
+          `https://allegro-project.herokuapp.com/users/${currentUser.id}`,
+          {
+            username: values.username,
+          }
+        )
+        .catch((error) => {
+          if (error.response) {
+            Alert.alert("Username successfully changed.");
+          }
+        });
+      setToggle((toggle) => !toggle);
+    }
   }
 
   function handleChangeEmail(values) {
-    axios
-      .patch(`https://allegro-project.herokuapp.com/users/${currentUser.id}`, {
-        email: values.email,
-      })
-      .catch((error) => {
-        if (error.response) {
-          Alert.alert("Email successfully changed.");
-        }
-      });
-    setToggle((toggle) => !toggle);
+    if (values.email.length === 0 || !values.email.includes("@")) {
+      Alert.alert("Please enter a valid email.");
+    } else {
+      axios
+        .patch(
+          `https://allegro-project.herokuapp.com/users/${currentUser.id}`,
+          {
+            email: values.email,
+          }
+        )
+        .catch((error) => {
+          if (error.response) {
+            Alert.alert("Email successfully changed.");
+          }
+        });
+      setToggle((toggle) => !toggle);
+    }
   }
 
   function handleChangePassword(values) {
-    axios
-      .patch(`https://allegro-project.herokuapp.com/users/${currentUser.id}`, {
-        old_password: values.oldPassword,
-        password: values.password,
-        password_confirmation: values.password_confirmation,
-      })
-      .catch((error) => {
-        if (error.response) {
-          Alert.alert("Password successfully changed.");
-        }
-      });
-    setToggle((toggle) => !toggle);
+    if (
+      values.oldPassword.length === 0 ||
+      values.password.length === 0 ||
+      values.passwordConfirmation.length === 0
+    ) {
+      Alert.alert("Please enter all fields.");
+    } else if (values.password !== values.passwordConfirmation) {
+      Alert.alert("Please confirm password again.");
+    } else {
+      axios
+        .patch(
+          `https://allegro-project.herokuapp.com/users/${currentUser.id}`,
+          {
+            old_password: values.oldPassword,
+            password: values.password,
+            password_confirmation: values.password_confirmation,
+          }
+        )
+        .catch((error) => {
+          if (error.response) {
+            Alert.alert("Password successfully changed.");
+          }
+        });
+      setToggle((toggle) => !toggle);
+    }
   }
 
   function handleDisableAlarm() {

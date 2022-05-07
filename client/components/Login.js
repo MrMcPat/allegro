@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from "react-native";
 import { Formik } from "formik";
 import { useNavigation } from "@react-navigation/native";
@@ -33,11 +34,10 @@ export default function Login({ setUser }) {
           navigation.navigate("Home");
         });
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => alert(err.errors));
       }
     });
   }
-  console.log(errors);
 
   return (
     <TouchableWithoutFeedback

@@ -59,6 +59,7 @@ export default function SetAlarm({ toggle, setToggle }) {
           alarm_increment: increment,
           is_disabled: false,
         });
+        Alert.alert("Alarm has been set.");
       } else {
         axios.patch(
           `https://allegro-project.herokuapp.com/alarms/${alarm.id}`,
@@ -70,6 +71,7 @@ export default function SetAlarm({ toggle, setToggle }) {
             is_disabled: false,
           }
         );
+        Alert.alert("Alarm has been set.");
       }
       setToggle((toggle) => !toggle);
     }

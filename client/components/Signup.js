@@ -35,7 +35,7 @@ export default function Signup({ setUser }) {
           navigation.navigate("Home");
         });
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => alert(err.errors));
       }
     });
   }
