@@ -4,7 +4,7 @@ import { globalStyles } from "../styles/global";
 export default function SetAlarmName({ handleAlarmName }) {
   return (
     <View style={styles.container}>
-      <Text style={globalStyles.text}>Enter Alarm Name</Text>
+      <Text style={globalStyles.text}>Set Alarm Name</Text>
       <TextInput
         style={styles.input}
         onChangeText={(value) => handleAlarmName(value)}

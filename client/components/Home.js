@@ -225,7 +225,9 @@ export default function Home({
       />
       <Tab.Screen
         name="Settings"
-        children={() => <Settings setUser={setUser} />}
+        children={() => (
+          <Settings toggle={toggle} setToggle={setToggle} setUser={setUser} />
+        )}
         options={{
           headerStyle: {
             backgroundColor: "#3A6351",

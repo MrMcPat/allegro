@@ -22,7 +22,7 @@ export default function Alarm({
   }, [second]);
 
   return (
-    <View style={[globalStyles.container, { paddingTop: 30 }]}>
+    <View style={[globalStyles.container, { paddingTop: "5%" }]}>
       <Text style={[globalStyles.text, { fontSize: 30 }]}>
         Hi {currentUser.username}!
       </Text>

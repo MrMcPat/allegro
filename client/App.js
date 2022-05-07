@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
 import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
