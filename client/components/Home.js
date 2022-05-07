@@ -38,7 +38,7 @@ export default function Home({
       (alarm) => alarm.user_id === userData.data.id
     );
     setAlarm(userAlarm);
-    setUserAlarmName(userAlarm.alarm_name);
+    userAlarm ? setUserAlarmName(userAlarm.alarm_name) : null;
     if (userAlarm) {
       let hourDiff =
         userAlarm.alarm_before.substring(3, 5) ===

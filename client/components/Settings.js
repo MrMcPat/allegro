@@ -224,13 +224,19 @@ export default function Settings({ toggle, setToggle, setUser }) {
           </Formik>
           <View style={styles.switch}>
             <Text style={globalStyles.text}>Disable Alarm?</Text>
-            <Switch
-              trackColor={{ false: "#767577", true: "#3A6351" }}
-              thumbColor={alarm.is_disabled ? "#D9E4DD" : "#D9E4DD"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={handleDisableAlarm}
-              value={alarm.is_disabled}
-            />
+            {alarm ? (
+              <Switch
+                trackColor={{ false: "#767577", true: "#3A6351" }}
+                thumbColor={alarm.is_disabled ? "#D9E4DD" : "#D9E4DD"}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={handleDisableAlarm}
+                value={alarm.is_disabled}
+              />
+            ) : (
+              <Text style={[globalStyles.text, { fontSize: 15 }]}>
+                Please configure your alarm to enable this feature.
+              </Text>
+            )}
           </View>
 
           <TouchableOpacity onPress={handleLogout} style={globalStyles.touch}>
