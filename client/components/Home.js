@@ -4,6 +4,7 @@ import Alarm from "./Alarm";
 import SetAlarm from "./SetAlarm";
 import Settings from "./Settings";
 import axios from "axios";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function Home({
   setUser,
@@ -160,7 +161,24 @@ export default function Home({
   }, [toggle]);
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === "Alarm") {
+            iconName = focused ? "alarm" : "alarm-outline";
+          } else if (route.name === "SetAlarm") {
+            iconName = focused ? "time" : "time-outline";
+          } else if (route.name === "Settings") {
+            iconName = focused ? "list-sharp" : "list";
+          }
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: "dodgerblue",
+        tabBarInactiveTintColor: "gray",
+      })}
+    >
       <Tab.Screen
         name="Alarm"
         children={() => (

@@ -4,12 +4,13 @@ import {
   Text,
   View,
   TextInput,
-  Button,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
 import { Formik } from "formik";
 import { useNavigation } from "@react-navigation/native";
+import { globalStyles } from "../styles/global";
 
 export default function Login({ setUser }) {
   const [errors, setErrors] = useState([]);
@@ -44,41 +45,54 @@ export default function Login({ setUser }) {
         Keyboard.dismiss();
       }}
     >
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        onSubmit={handleLogin}
-      >
-        {({ handleChange, handleBlur, handleSubmit, values }) => (
-          <View>
-            <Text>Email</Text>
-            <TextInput
-              onChangeText={handleChange("email")}
-              onBlur={handleBlur("email")}
-              value={values.email}
-              style={styles.input}
-            />
-            <Text>Password</Text>
-            <TextInput
-              onChangeText={handleChange("password")}
-              onBlur={handleBlur("password")}
-              value={values.password}
-              secureTextEntry={true}
-              style={styles.input}
-            />
-            <Button onPress={handleSubmit} title="Login" />
-          </View>
-        )}
-      </Formik>
+      <View style={[globalStyles.container, styles.container]}>
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          onSubmit={handleLogin}
+        >
+          {({ handleChange, handleBlur, handleSubmit, values }) => (
+            <View>
+              <Text style={globalStyles.text}>Email</Text>
+              <TextInput
+                onChangeText={handleChange("email")}
+                onBlur={handleBlur("email")}
+                value={values.email}
+                style={styles.input}
+              />
+              <Text style={globalStyles.text}>Password</Text>
+              <TextInput
+                onChangeText={handleChange("password")}
+                onBlur={handleBlur("password")}
+                value={values.password}
+                secureTextEntry={true}
+                style={styles.input}
+              />
+              <TouchableOpacity
+                onPress={handleSubmit}
+                style={[globalStyles.touch, { marginTop: 20 }]}
+              >
+                <Text style={globalStyles.text}>Login</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </Formik>
+      </View>
     </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingTop: "10%",
+  },
   input: {
     margin: 10,
+    width: 200,
     paddingHorizontal: 8,
     paddingVertical: 6,
-    borderWidth: 1,
-    // borderBottomColor: "#ddd",
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "#78938A",
+    color: "#D9E4DD",
   },
 });
