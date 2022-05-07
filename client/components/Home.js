@@ -5,7 +5,12 @@ import SetAlarm from "./SetAlarm";
 import Settings from "./Settings";
 import axios from "axios";
 
-export default function Home({ setUser, alarmTrigger, setAlarmTrigger }) {
+export default function Home({
+  setUser,
+  alarmTrigger,
+  setAlarmTrigger,
+  setUserAlarmName,
+}) {
   const [toggle, setToggle] = useState(false);
   const Tab = createBottomTabNavigator();
   const [currentUser, setCurrentUser] = useState([]);
@@ -32,6 +37,7 @@ export default function Home({ setUser, alarmTrigger, setAlarmTrigger }) {
       (alarm) => alarm.user_id === userData.data.id
     );
     setAlarm(userAlarm);
+    setUserAlarmName(userAlarm.alarm_name);
     if (userAlarm) {
       let hourDiff =
         userAlarm.alarm_before.substring(3, 5) ===

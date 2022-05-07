@@ -9,7 +9,7 @@ import {
 export default function Landing({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Landing</Text>
+      <Text>Allegro</Text>
       <View>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text>Login</Text>
@@ -27,6 +27,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    // justifyContent: "center",
+    justifyContent: "center",
   },
 });

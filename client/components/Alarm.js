@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import AnalogClock from "./AnalogClock";
 
 export default function Alarm({
   alarm,
@@ -7,14 +8,38 @@ export default function Alarm({
   alarmTomorrow,
   alarmTrigger,
 }) {
+  const [hour, setHour] = useState("");
+  const [minute, setMinute] = useState("");
+  const [second, setSecond] = useState("");
+
+  useEffect(() => {
+    setInterval(() => {
+      setHour(new Date().getHours().toString().padStart(2, 0));
+      setMinute(new Date().getMinutes().toString().padStart(2, 0));
+      setSecond(new Date().getSeconds().toString().padStart(2, 0));
+    }, 1000);
+  }, [second]);
+
   return (
-    <View>
+    <View style={styles.container}>
+      <AnalogClock
+        colorClock="#2196F3"
+        colorNumber="#000000"
+        colorCenter="#00BCD4"
+        colorHour="#FF8F00"
+        colorMinutes="#FFC400"
+        autostart={true}
+        showSeconds
+      />
+      <Text
+        style={{ fontFamily: "Orbitron_400Regular" }}
+      >{`${hour}:${minute}:${second}`}</Text>
       {alarm ? (
         <>
-          <Text>{alarm.alarm_name}</Text>
-          <Text>{alarm.alarm_before}</Text>
-          <Text>{alarm.alarm_after}</Text>
-          <Text>{alarm.alarm_increment}</Text>
+          <Text>Alarm name: {alarm.alarm_name}</Text>
+          <Text>Start: {alarm.alarm_before}</Text>
+          <Text>Goal: {alarm.alarm_after}</Text>
+          <Text>Increment: {alarm.alarm_increment}</Text>
           <Text>
             Tomorrow's alarm:{" "}
             {alarmTomorrow.day ? alarmTomorrow.day : "Everyday"} at{" "}
@@ -47,3 +72,12 @@ export default function Alarm({
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    // backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
