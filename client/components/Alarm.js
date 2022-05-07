@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Alarm({ alarm, alarmDateTime, alarmTomorrow }) {
+export default function Alarm({
+  alarm,
+  alarmDateTime,
+  alarmTomorrow,
+  alarmTrigger,
+}) {
   return (
     <View>
       {alarm ? (
@@ -14,6 +19,10 @@ export default function Alarm({ alarm, alarmDateTime, alarmTomorrow }) {
             Tomorrow's alarm:{" "}
             {alarmTomorrow.day ? alarmTomorrow.day : "Everyday"} at{" "}
             {alarmTomorrow.time ? alarmTomorrow.time : alarm.alarm_after}
+          </Text>
+          <Text>
+            Today's alarm: {alarmTomorrow ? alarmTrigger.day : "Everyday"} at{" "}
+            {alarmTomorrow ? alarmTrigger.time : alarm.alarm_after}
           </Text>
           {alarmTomorrow ? (
             <>

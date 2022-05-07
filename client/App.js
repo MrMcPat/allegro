@@ -64,6 +64,8 @@ export default function App() {
     }, 60000);
   }, [time]);
 
+  console.log(time, alarmTrigger.time);
+
   const Stack = createNativeStackNavigator();
 
   return (
@@ -73,7 +75,11 @@ export default function App() {
           <Stack.Screen
             name="Home"
             children={() => (
-              <Home setUser={setUser} setAlarmTrigger={setAlarmTrigger} />
+              <Home
+                setUser={setUser}
+                alarmTrigger={alarmTrigger}
+                setAlarmTrigger={setAlarmTrigger}
+              />
             )}
             options={{ headerShown: false }}
           />

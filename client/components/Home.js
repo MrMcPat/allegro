@@ -5,13 +5,12 @@ import SetAlarm from "./SetAlarm";
 import Settings from "./Settings";
 import axios from "axios";
 
-export default function Home({ setUser, setAlarmTrigger }) {
+export default function Home({ setUser, alarmTrigger, setAlarmTrigger }) {
   const [toggle, setToggle] = useState(false);
   const Tab = createBottomTabNavigator();
   const [currentUser, setCurrentUser] = useState([]);
   const [alarm, setAlarm] = useState([]);
   const [alarmDateTime, setAlarmDateTime] = useState([]);
-  const [alarmToday, setAlarmToday] = useState([]);
   const [alarmTomorrow, setAlarmTomorrow] = useState([]);
 
   useEffect(async () => {
@@ -133,9 +132,7 @@ export default function Home({ setUser, setAlarmTrigger }) {
           });
         }
       }
-      const alarmToday = alarmArray.find(
-        (date) => new Date(currentDate) === new Date(date.day)
-      );
+      const alarmToday = alarmArray.find((date) => currentDate === date.day);
       if (alarmToday) {
         setAlarmTrigger(alarmToday);
       } else if (
@@ -165,6 +162,7 @@ export default function Home({ setUser, setAlarmTrigger }) {
             alarm={alarm}
             alarmDateTime={alarmDateTime}
             alarmTomorrow={alarmTomorrow}
+            alarmTrigger={alarmTrigger}
           />
         )}
       />
