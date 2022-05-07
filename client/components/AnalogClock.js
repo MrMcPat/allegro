@@ -73,6 +73,8 @@ export default class AnalogClock extends React.Component {
         style={{
           backgroundColor: colorClock,
           borderRadius: size / 2,
+          borderWidth: 2,
+          borderColor: "#D9E4DD",
           justifyContent: "center",
           alignItems: "center",
           height: size,

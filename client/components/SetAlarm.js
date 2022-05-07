@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
-  Button,
+  Text,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   Keyboard,
   Alert,
 } from "react-native";
@@ -12,6 +13,7 @@ import SetAlarmName from "./SetAlarmName";
 import SetStartingTime from "./SetStartingTime";
 import SetEndTime from "./SetEndTime";
 import SetIncrement from "./SetIncrement";
+import { globalStyles } from "../styles/global";
 
 export default function SetAlarm({ toggle, setToggle }) {
   const [user, setUser] = useState([]);
@@ -74,21 +76,28 @@ export default function SetAlarm({ toggle, setToggle }) {
   }
 
   return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss();
-      }}
-    >
-      <View>
-        <SetAlarmName handleAlarmName={handleAlarmName} />
-        <View style={styles.timeContainer}>
-          <SetStartingTime handleStartingTime={handleStartingTime} />
-          <SetEndTime handleEndTime={handleEndTime} />
+    <View style={[globalStyles.container, { paddingTop: "5%" }]}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+        <View>
+          <SetAlarmName handleAlarmName={handleAlarmName} />
+          <View style={styles.timeContainer}>
+            <SetStartingTime handleStartingTime={handleStartingTime} />
+            <SetEndTime handleEndTime={handleEndTime} />
+          </View>
+          <SetIncrement handleIncrement={handleIncrement} />
+          <TouchableOpacity
+            onPress={handleAdd}
+            style={[globalStyles.touch, { marginHorizontal: 50 }]}
+          >
+            <Text style={globalStyles.text}>Set Alarm</Text>
+          </TouchableOpacity>
         </View>
-        <SetIncrement handleIncrement={handleIncrement} />
-        <Button title="Set Alarm" onPress={handleAdd} />
-      </View>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    </View>
   );
 }
 

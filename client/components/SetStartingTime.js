@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import hours from "../timeSelection/hours";
 import minutes from "../timeSelection/minutes";
+import { globalStyles } from "../styles/global";
 
 export default function SetStartingTime({ handleStartingTime }) {
   const [selectedHour, setSelectedHour] = useState("00");
@@ -14,12 +15,16 @@ export default function SetStartingTime({ handleStartingTime }) {
 
   return (
     <View>
-      <Text>Starting Time</Text>
+      <Text style={globalStyles.text}>Starting Time</Text>
       <View style={styles.container}>
         <Picker
           style={styles.picker}
           selectedValue={selectedHour}
           onValueChange={(itemValue, itemIndex) => setSelectedHour(itemValue)}
+          itemStyle={{
+            color: "#D9E4DD",
+            fontFamily: "Cairo_400Regular",
+          }}
         >
           {hours.map((hour) => (
             <Picker.Item
@@ -33,6 +38,10 @@ export default function SetStartingTime({ handleStartingTime }) {
           style={styles.picker}
           selectedValue={selectedMinute}
           onValueChange={(itemValue, itemIndex) => setSelectedMinute(itemValue)}
+          itemStyle={{
+            color: "#D9E4DD",
+            fontFamily: "Cairo_400Regular",
+          }}
         >
           {minutes.map((minute) => (
             <Picker.Item

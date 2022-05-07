@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  Modal,
-  Pressable,
-} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
+import { globalStyles } from "../styles/global";
 
 const data = [
   { label: "1", value: "1" },
@@ -41,14 +35,15 @@ export default function SetIncrement({ handleIncrement }) {
   }, [value]);
   return (
     <View>
-      <Text>Increment(minutes)</Text>
+      <Text style={globalStyles.text}>Increment (min)</Text>
       <View style={styles.container}>
         <Dropdown
-          style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
+          style={[styles.dropdown, isFocus && { borderColor: "#3A6351" }]}
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
+          containerStyle={styles.containerStyle}
+          activeColor="#3A6351"
           data={data}
           maxHeight={300}
           labelField="label"
@@ -74,14 +69,18 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     height: 50,
-    borderColor: "gray",
+    borderColor: "#D9E4DD",
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
     width: "50%",
+    backgroundColor: "black",
   },
   icon: {
     marginRight: 5,
+  },
+  containerStyle: {
+    backgroundColor: "black",
   },
   label: {
     position: "absolute",
@@ -94,16 +93,14 @@ const styles = StyleSheet.create({
   },
   placeholderStyle: {
     fontSize: 16,
+    color: "#D9E4DD",
   },
   selectedTextStyle: {
     fontSize: 16,
+    color: "#D9E4DD",
   },
   iconStyle: {
     width: 20,
     height: 20,
-  },
-  inputSearchStyle: {
-    height: 40,
-    fontSize: 16,
   },
 });

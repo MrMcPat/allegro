@@ -175,8 +175,13 @@ export default function Home({
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: "dodgerblue",
-        tabBarInactiveTintColor: "gray",
+        tabBarActiveBackgroundColor: "#78938A",
+        tabBarActiveTintColor: "#D9E4DD",
+        tabBarInactiveBackgroundColor: "#3A6351",
+        tabBarInactiveTintColor: "#D9E4DD",
+        tabBarBadgeStyle: { marginTop: 20 },
+        tabBarLabelStyle: { marginBottom: 30 },
+        tabBarStyle: { height: 100, marginBottom: -30 },
       })}
     >
       <Tab.Screen
@@ -187,16 +192,51 @@ export default function Home({
             alarmDateTime={alarmDateTime}
             alarmTomorrow={alarmTomorrow}
             alarmTrigger={alarmTrigger}
+            currentUser={currentUser}
           />
         )}
+        options={{
+          headerStyle: {
+            backgroundColor: "#3A6351",
+          },
+          headerTitleStyle: {
+            color: "#D9E4DD",
+            fontFamily: "Cairo_400Regular",
+            fontSize: 25,
+          },
+          headerTintColor: "#D9E4DD",
+        }}
       />
       <Tab.Screen
         name="SetAlarm"
         children={() => <SetAlarm toggle={toggle} setToggle={setToggle} />}
+        options={{
+          title: "Set Alarm",
+          headerStyle: {
+            backgroundColor: "#3A6351",
+          },
+          headerTitleStyle: {
+            color: "#D9E4DD",
+            fontFamily: "Cairo_400Regular",
+            fontSize: 25,
+          },
+          headerTintColor: "#D9E4DD",
+        }}
       />
       <Tab.Screen
         name="Settings"
         children={() => <Settings setUser={setUser} />}
+        options={{
+          headerStyle: {
+            backgroundColor: "#3A6351",
+          },
+          headerTitleStyle: {
+            color: "#D9E4DD",
+            fontFamily: "Cairo_400Regular",
+            fontSize: 25,
+          },
+          headerTintColor: "#D9E4DD",
+        }}
       />
     </Tab.Navigator>
   );

@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
+import { globalStyles } from "../styles/global";
 
 export default function SetAlarmName({ handleAlarmName }) {
   return (
     <View style={styles.container}>
-      <Text>Enter Alarm Name</Text>
+      <Text style={globalStyles.text}>Enter Alarm Name</Text>
       <TextInput
         style={styles.input}
         onChangeText={(value) => handleAlarmName(value)}
@@ -15,15 +15,16 @@ export default function SetAlarmName({ handleAlarmName }) {
 
 const styles = StyleSheet.create({
   container: {
-    position: "relative",
-    left: "30%",
+    alignItems: "center",
   },
   input: {
     margin: 10,
+    width: 200,
     paddingHorizontal: 8,
     paddingVertical: 6,
-    borderWidth: 1,
-    width: 150,
-    // borderBottomColor: "#ddd",
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "#78938A",
+    color: "#D9E4DD",
   },
 });

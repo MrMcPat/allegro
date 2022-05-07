@@ -7,7 +7,6 @@ import {
   Image,
 } from "react-native";
 import { globalStyles } from "../styles/global";
-import logo from "../assets/rewind-time.png";
 
 export default function Landing({ navigation }) {
   return (
@@ -18,7 +17,7 @@ export default function Landing({ navigation }) {
             style={styles.logo}
             source={require("../assets/rewind-time.png")}
           />
-          <Text style={styles.title}>Allegro</Text>
+          <Text style={styles.title}>✤ Allegro ✤</Text>
           <Text style={globalStyles.text}>a sleep pattern adjusting app</Text>
         </View>
         <View style={styles.loginsignup}>
