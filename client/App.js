@@ -16,7 +16,7 @@ import {
 Notifications.setNotificationHandler({
   handleNotification: async () => {
     return {
-      shouldPlaySound: false,
+      shouldPlaySound: true,
       shouldSetBadge: false,
       shouldShowAlert: true,
     };
