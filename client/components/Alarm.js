@@ -14,11 +14,14 @@ export default function Alarm({
   const [second, setSecond] = useState("");
 
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       setHour(new Date().getHours().toString().padStart(2, 0));
       setMinute(new Date().getMinutes().toString().padStart(2, 0));
       setSecond(new Date().getSeconds().toString().padStart(2, 0));
     }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
   }, [second]);
 
   return (
