@@ -30,3 +30,20 @@ Configuring the alarm and increments.
 <img src="client/assets/AllegroNotif.png" width="200">
 
 **Screenshot taken on my physical phone.** Alarm triggered at 9:00 to the user Sleepyhead. He has a start alarm at 9:00 and will reach 8:00 in 20 days. Tomorrow, the alarm will trigger at 8:57 since he configured the increment to be 3 minutes.
+
+**To start the app**
+
+```
+// clone the repo
+git clone git@github.com:MrMcPat/allegro.git
+```
+
+```
+// Install expo cli if you do not haven't
+npm i -g expo-cli
+```
+
+```
+// start the frontend interface
+npm start --prefix client
+```
