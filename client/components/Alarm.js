@@ -61,9 +61,8 @@ export default function Alarm({
             </View>
           </View>
           <Text style={globalStyles.text}>
-            Tomorrow's alarm:{" "}
-            {alarmTomorrow.day ? alarmTomorrow.day : "Everyday"} at{" "}
-            {alarmTomorrow.time ? alarmTomorrow.time : alarm.alarm_after}
+            Tomorrow's alarm: {alarmTomorrow ? alarmTomorrow.day : "Everyday"}{" "}
+            at {alarmTomorrow ? alarmTomorrow.time : alarm.alarm_after}
           </Text>
           {alarmTomorrow ? (
             <>
